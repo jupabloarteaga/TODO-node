@@ -31,8 +31,7 @@ const main = async() => {
                         break;
 
             case '2':
-                // listar tareas
-                const a = tareas.completarLista();
+                tareas.completarLista();
                 break;
 
             case '3':
@@ -46,9 +45,9 @@ const main = async() => {
                 tareas.toggleCompletadas(ids);
                 break;
             case '6':
-                const id =  await listadoTareasBorrar( tareas.listarArr);
-                await confirmarBorrar();
-                tareas.borrarTarea(id);
+                const id = await listadoTareasBorrar(tareas.listarArr);
+                const ok = await confirmarBorrar();
+                if (ok) tareas.borrarTarea(id);
             break;
         }
 
