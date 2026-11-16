@@ -1,28 +1,44 @@
 const fs = require('fs');
 
-const archivo = './db/data.json';
+const archivTareas   = './db/data.json';
+const archivRentas   = './db/rentaCars.json';
+const archivGastro   = './db/expGastronomicas.json';
 
-const guardarDB = ( data ) =>{
-    const archivo = './db/data.json';
-    
-    fs.writeFileSync(archivo, JSON.stringify(data));
+const guardarDB = (data) => {
+    fs.writeFileSync(archivTareas, JSON.stringify(data));
+};
 
-}
+const leerDB = () => {
+    if (!fs.existsSync(archivTareas)) return null;
+    const info = fs.readFileSync(archivTareas, { encoding: 'utf-8' });
+    return JSON.parse(info);
+};
 
-const leerDB = () =>{
+const guardarRentas = (data) => {
+    fs.writeFileSync(archivRentas, JSON.stringify(data));
+};
 
-    if(!fs.existsSync( archivo )){
-        return null;
-    }
+const leerRentas = () => {
+    if (!fs.existsSync(archivRentas)) return null;
+    const info = fs.readFileSync(archivRentas, { encoding: 'utf-8' });
+    return JSON.parse(info);
+};
 
-    const info = fs.readFileSync( archivo, { encoding: 'utf-8' } );
-    const data = JSON.parse(info);
+const guardarGastro = (data) => {
+    fs.writeFileSync(archivGastro, JSON.stringify(data));
+};
 
-    return data;
-}
-
+const leerGastro = () => {
+    if (!fs.existsSync(archivGastro)) return null;
+    const info = fs.readFileSync(archivGastro, { encoding: 'utf-8' });
+    return JSON.parse(info);
+};
 
 module.exports = {
     guardarDB,
-    leerDB
+    leerDB,
+    guardarRentas,
+    leerRentas,
+    guardarGastro,
+    leerGastro,
 }
